@@ -1,9 +1,9 @@
 # Déploiement
 deploy:
-	ssh o2switch 'cd ~/lptwebsite && git pull origin main && make install'
+	ssh sc4hthv9619@zebre.o2switch.net 'cd ~/lptwebsite && git pull origin main && make install'
 
 # Cible principale pour le déploiement
-install: .env public/storage vendor/autoload.php public/build/manifest.json
+install: vendor/autoload.php .env public/storage  public/build/manifest.json
 	php artisan cache:clear
 	php artisan migrate --force
 	@echo "Deployment complete."
