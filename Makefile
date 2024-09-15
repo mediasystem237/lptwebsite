@@ -1,3 +1,7 @@
+deploy:
+	ssh o2switch 'cd~/lptwebsite && git pull origin main && make install'
+
+
 # Cible principale pour le déploiement
 install: .env public/storage vendor/autoload.php public/build/manifest.json
 		php artisan cache:clear
