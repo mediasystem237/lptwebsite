@@ -6,7 +6,10 @@ use App\Models\Article;
 use App\Models\Event;
 use App\Models\Officer;
 use App\Models\Setting;
+use App\Models\Testimonial; // Importez correctement le modèle Testimonial
+use App\Models\Faq;         // Importez également le modèle Faq
 use Illuminate\Http\Request;
+
 
 class FrontendController extends Controller
 {
@@ -30,8 +33,19 @@ class FrontendController extends Controller
     public function about()
     {
         $settings = Setting::pluck('value', 'key')->all();
-        return view('about', compact('settings'));
+
+        // Récupérer les membres de l'équipe depuis la table `officers`
+        $teamMembers = Officer::all(); // Utilisation du modèle Officer
+
+        // Récupérer les témoignages
+        $testimonials = Testimonial::all();
+
+        // Récupérer les FAQs
+        $faqs = Faq::all();
+
+        return view('about', compact('settings', 'teamMembers', 'testimonials', 'faqs'));
     }
+    
     
     public function officers()
     {
